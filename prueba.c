@@ -8,13 +8,17 @@
 #define TABL 0
 #define VEC 1
 
+// TODO: cambiar el codigo para reservar memoria de manera dinamica
+//       no olvidar chequear que se aloco bien la memoria
+//       no olvidar liberar la memoria
+//       
 
 // A RECORDAME CADA VEZ QUE HAGA UNA FUNCION QUE TENGA DE ENTRADA A TABLERO Y VECINOS DE PONERLOS EN ESE ORDEN
-void inicializar(char tablero[][N],char vecinos[][N]);
-void print_arr(char tablero[][N],char modo);
-void actualizar_vecinos(char tablero[][N],char vecinos[][N]);
-char contar_vecinos(char vecinos[][N],int i, int j);
-void actualizar_tablero(char tablero[][N],char vecinos[][N]);
+void inicializar(char tablero[][N],char vecinos[][N]);           //main
+void print_arr(char tablero[][N],char modo);                     //front end
+void actualizar_vecinos(char tablero[][N],char vecinos[][N]);    //back end
+char contar_vecinos(char vecinos[][N],int i, int j);             //back end
+void actualizar_tablero(char tablero[][N],char vecinos[][N]);    //back end
 
 
 int main(void){
@@ -28,9 +32,6 @@ int main(void){
         actualizar_tablero(tablero,vecinos);
         actualizar_vecinos(tablero,vecinos);
     }
-    //printf("hola");
-
-
     return 0;
 }
 
