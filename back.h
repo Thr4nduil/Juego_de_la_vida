@@ -11,7 +11,7 @@
 #define GEN 10
 #define MODO 0
 #define VEC 1
-#define CHANCE 7
+#define CHANCE 5
 
 // ------------ FUNCIONES ------------
 extern char *inicializar (int, int);
