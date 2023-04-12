@@ -11,6 +11,7 @@
 char* inicializar(int fil , int col){
     //Reservo espacio de memoria
     char *tablero = (char*) malloc((fil*col)*sizeof(char));
+    srand (time(NULL));
 
     for(int i=0 ; i<fil ; i++){
         for(int j=0 ; j<col ; j++){

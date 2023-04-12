@@ -7,10 +7,6 @@
 #include <time.h>
 
 //------------ DEFINICIONES ------------
-#define N 10
-#define GEN 10
-#define MODO 0
-#define VEC 1
 #define CHANCE 5
 
 // ------------ FUNCIONES ------------
