@@ -1,15 +1,14 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 #include "back.h"
 
-#define N 10
-#define GEN 10
-#define MODO 0
-#define VEC 1
-#define CHANCE 7
-
-char* inicializar(int fil , int col){ // LE PASO LA MATRIZ Y ME COMPLETA CON 1 EN LUGARES RANDOM
+/**
+ * @brief crea un vector/matriz tablero, que contiene a todas las celdas del tablero
+ * 
+ * @param fil cantidad de filas del tablero
+ * @param col cantidad de columnas del tablero
+ * 
+ * @return tablero  puntero que apunta al espacio reservado para el tablero
+ */
+char* inicializar(int fil , int col){
     //Reservo espacio de memoria
     char *tablero = (char*) malloc((fil*col)*sizeof(char));
 
@@ -21,16 +20,26 @@ char* inicializar(int fil , int col){ // LE PASO LA MATRIZ Y ME COMPLETA CON 1 E
     return tablero;
 }
 
+/**
+ * @brief Actualiza al tablero acorde a las reglas del juego
+ * 
+ * @param tablero   puntero al tablero
+ * @param fils      cantidad de filas del tablero
+ * @param cols      cantidad de columnas del tablero
+ */
 void actualizar_tablero(char *tablero , int fils , int cols){
     char  nueva_celda,celda,nro_vecinos;
 
-    //TODO: necesito vecinos
+    // Vecinos
+    char *vecinos = (char*) malloc((fils*cols)*sizeof(char));
+    get_vecinos(tablero , vecinos , fils , cols);
 
+    // Logica del juego
     for(int i=0 ; i<fils ; i++){
         for(int j=0 ; j<cols ; j++){
             nueva_celda=0;
             celda=tablero[i*cols + j];
-            nro_vecinos=vecinos[i][j];
+            nro_vecinos=vecinos[i*cols+j];
 
             //printf("celda: %d, vecinos %d\n",celda,nro_vecinos);
 
@@ -46,17 +55,24 @@ void actualizar_tablero(char *tablero , int fils , int cols){
             tablero[i*cols + j]=nueva_celda;
         }
     }
-
+    free(vecinos);
 }
 
-void get_vecinos(char *tablero , int fils , int cols){ // LE PASO LA MATRIZ TABLERO Y ME ACTUALIZA LA MATRIZ VECINOS CON LA CANTIDAD DE VECINOS VIVOS QUE VE CADA CELDA
+/**
+ * @brief Calcula la cantidad de vecinos vivos que tiene cada celda
+ * 
+ * @param tablero 
+ * @param vecinos 
+ * @param fils 
+ * @param cols 
+ */
+void get_vecinos(char *tablero , char *vecinos , int fils , int cols){ // LE PASO LA MATRIZ TABLERO Y ME ACTUALIZA LA MATRIZ VECINOS CON LA CANTIDAD DE VECINOS VIVOS QUE VE CADA CELDA
     //printf("actualizando vecinos\n");
     for(int i=0 ; i<fils ; i++){ //RECORRE LA MATRIZ VECINOS Y ACTUALIZA SU NUMERO
         for(int j=0 ; j<cols ; j++){
-            vecinos[i][j]=contar_vecinos(tablero,i,j); //PARA CADA POSICION COLOCA EL NUMERO DE VECINOS
+            vecinos[i*cols+j] = contar_vecinos(tablero,i,j,fils,cols); //PARA CADA POSICION COLOCA EL NUMERO DE VECINOS
         }
     }
-
 }
 
 

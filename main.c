@@ -15,8 +15,8 @@ int main(void){
 
     for(int i=1;i<=GEN;i++){            
         printf("------GENERACIÓN %d------\n",i);
-        print_arr(tablero,MODO);
-        actualizar_tablero(tablero,FILS,COLS);
+        print_tablero(tablero , FILS , COLS , MODO);
+        actualizar_tablero(tablero , FILS , COLS);
     }
 
     free(tablero);
